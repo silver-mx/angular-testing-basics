@@ -1,0 +1,16 @@
+.shipping-card {
+    max-width: 400px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.shippingOption, .pickup-store, .delivery-address {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.shippingCost {
+    font-size: 16px;
+}

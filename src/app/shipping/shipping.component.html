@@ -1,0 +1,39 @@
+<mat-card class="shipping-card">
+    <mat-card-title>Shipping</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+    <form [formGroup]="shippingForm">
+        <div class="shippingOption">
+            <mat-radio-group formControlName="deliveryOption" aria-label="Select the delivery form">
+                <mat-radio-button value="pickup_store">Pick up</mat-radio-button>
+                <mat-radio-button value="home_delivery">Home delivery</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="pickup-store" *ngIf="this.shippingForm.get('deliveryOption')?.value === 'pickup_store'">
+            <mat-form-field appearance="fill">
+                <mat-label>Pickup at store</mat-label>
+                <mat-select formControlName="pickupStore">
+                    <mat-option *ngFor="let store of stores" [value]="store.id">{{store.name}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="shippingForm.get('pickupStore')?.errors">{{ 'The pickup store is required.' }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="delivery-address" *ngIf="this.shippingForm.get('deliveryOption')?.value === 'home_delivery'">
+            <mat-form-field appearance="fill">
+                <mat-label>Home address</mat-label>
+                <input matInput formControlName="deliveryAddress">
+                <mat-error *ngIf="shippingForm.get('deliveryAddress')?.errors">{{ 'The delivery address is required.' }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </form>
+
+    <div class="shippingCost">
+        {{ 'The shipping cost is:'}} {{ this.shippingCost?.value | currency }}
+    </div>
+    <mat-card-actions align="end">
+        <button type="submit" mat-raised-button color="primary" (onclick)="onSave()"
+            [disabled]="shippingForm.invalid">Save</button>
+    </mat-card-actions>
+</mat-card>
