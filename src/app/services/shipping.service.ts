@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Store } from '../shipping/shipping.component';
@@ -7,12 +8,9 @@ import { Store } from '../shipping/shipping.component';
 })
 export class ShippingService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getStores(): Observable<Store[]> {
-    return of([
-      new Store('id_1', 'store_1'),
-      new Store('id_2', 'store_2'),
-      new Store('id_3', 'store_3')]);
+    return this.httpClient.get<Store[]>('/api/v1/fake-endpoint/stores');
   }
 }
