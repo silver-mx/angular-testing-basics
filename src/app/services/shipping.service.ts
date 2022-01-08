@@ -13,4 +13,8 @@ export class ShippingService {
   getStores(): Observable<Store[]> {
     return this.httpClient.get<Store[]>('/api/v1/fake-endpoint/stores');
   }
+
+  saveDeliveryInfo(shippingInfo: any): Observable<void> {
+    return of();
+  }
 }

@@ -71,7 +71,7 @@ export class ShippingComponent implements OnInit {
   }
 
   onSave(): void {
-    console.log('The shipping information has been saved ...');
+    this.service.saveDeliveryInfo(this.shippingForm.value);
   }
 
 }
